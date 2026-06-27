@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://blt3hdm80janx"]
+
+[ext_resource type="PackedScene" uid="uid://ch8dahkx0gdf0" path="res://puzzles/batteries/battery.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dpu14g2p3jjty" path="res://player/player.tscn" id="2_h2yge"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+size = Vector3(154.72737, 1, 162.85262)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
+albedo_color = Color(0.41568628, 0.36862746, 0.3647059, 0.25882354)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7dm0k"]
+material = SubResource("StandardMaterial3D_ig7tw")
+size = Vector2(156.52, 164.44)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+
+[node name="main" type="Node3D" unique_id=1303367813]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=867222819]
+environment = SubResource("Environment_h2yge")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1918601353]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 64.87465, 135.86516)
+light_energy = 1.792
+shadow_enabled = true
+sky_mode = 1
+
+[node name="player" parent="." unique_id=125507223 instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9367685, 1.7699821, 3.0966024)
+
+[node name="floor" type="StaticBody3D" parent="." unique_id=113786911]
+collision_mask = 2
+
+[node name="collision_shape" type="CollisionShape3D" parent="floor" unique_id=501590970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62513924, 0, -0.34723663)
+shape = SubResource("BoxShape3D_0xm2m")
+debug_color = Color(0.8379153, 0.38512078, 7.70092e-07, 1)
+
+[node name="mesh" type="MeshInstance3D" parent="floor" unique_id=673627936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02206707, 0, 0.036579132)
+mesh = SubResource("PlaneMesh_7dm0k")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="floor" unique_id=1328807694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2075195, 4.4340515, 0)
+size = Vector3(7.415039, 9.868103, 1)
+material = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="battery" parent="." unique_id=1780905214 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5394175, 0.9, -12.916992)

@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://bopqneblkx7tj"]
+
+[ext_resource type="FontFile" uid="uid://b7f2ugwfvls87" path="res://globals/fonts/dialogue.ttf" id="1_vusla"]
+[ext_resource type="Script" uid="uid://doogjmpksurlr" path="res://globals/dialogue/dialogue_inner.gd" id="1_yrf2d"]
+[ext_resource type="AudioStream" uid="uid://bjkby8m6unr7o" path="res://globals/dialogue/dialogue_sound.mp3" id="3_1beoq"]
+
+[sub_resource type="Gradient" id="Gradient_wu684"]
+interpolation_mode = 2
+interpolation_color_space = 2
+colors = PackedColorArray(0.27752772, 0.27752775, 0.27752757, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kp46k"]
+gradient = SubResource("Gradient_wu684")
+fill_from = Vector2(0.96153843, 1)
+fill_to = Vector2(1, 0.13247864)
+
+[node name="dialogue" type="Control" unique_id=1912286137]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yrf2d")
+characters_per_second = 15.0
+
+[node name="dialogue_canvas" type="CanvasLayer" parent="." unique_id=1948580980]
+unique_name_in_owner = true
+
+[node name="background" type="TextureRect" parent="dialogue_canvas" unique_id=528434409]
+anchors_preset = -1
+anchor_top = 0.76900005
+anchor_right = 1.0020001
+anchor_bottom = 1.0
+offset_top = 0.3199463
+offset_right = -0.5600586
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_kp46k")
+
+[node name="person" type="Label" parent="dialogue_canvas" unique_id=1098291920]
+anchors_preset = -1
+anchor_left = 0.342
+anchor_top = 0.93200004
+anchor_right = 0.661
+anchor_bottom = 0.98700005
+offset_left = 0.23999023
+offset_top = -0.040039063
+offset_right = -0.08001709
+offset_bottom = 0.35998535
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_vusla")
+theme_override_font_sizes/font_size = 30
+text = "[DAD]"
+horizontal_alignment = 1
+
+[node name="text" type="RichTextLabel" parent="dialogue_canvas" unique_id=1738333422]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.031000001
+anchor_top = 0.80700004
+anchor_right = 0.97400004
+anchor_bottom = 0.93600005
+offset_left = 0.3199997
+offset_top = -0.040039063
+offset_right = 0.27990723
+offset_bottom = 0.079956055
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("1_vusla")
+theme_override_font_sizes/normal_font_size = 38
+text = "How was school today son?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="dialogue_sound" type="AudioStreamPlayer" parent="dialogue_canvas" unique_id=1803687132]
+stream = ExtResource("3_1beoq")
+volume_db = 3.0
