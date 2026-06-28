@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b663wre7vbmiu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oes6k"]
+bg_color = Color(0.2520276, 0.25202766, 0.25202763, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2051174, 0.20511746, 0.20511726, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="slot" type="TextureButton" unique_id=1715536932]
+custom_minimum_size = Vector2(64, 64)
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="." unique_id=1800479230]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oes6k")

@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://7gjxh8pna2jx"]
+
+[ext_resource type="PackedScene" uid="uid://b663wre7vbmiu" path="res://mechanics/inventory/inventory_slot.tscn" id="1_5atxo"]
+[ext_resource type="Script" uid="uid://c2ebfotwvd464" path="res://mechanics/inventory/inventory.gd" id="1_ll5o3"]
+[ext_resource type="Script" uid="uid://db52su2xdsppo" path="res://mechanics/inventory/hotbar.gd" id="2_3jjra"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ll5o3"]
+device = -1
+keycode = 49
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_ll5o3"]
+events = [SubResource("InputEventKey_ll5o3")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_3jjra"]
+device = -1
+keycode = 50
+unicode = 50
+
+[sub_resource type="Shortcut" id="Shortcut_en8ad"]
+events = [SubResource("InputEventKey_3jjra")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_en8ad"]
+device = -1
+keycode = 51
+unicode = 51
+
+[sub_resource type="Shortcut" id="Shortcut_ygn6r"]
+events = [SubResource("InputEventKey_en8ad")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ebdq3"]
+device = -1
+keycode = 52
+unicode = 52
+
+[sub_resource type="Shortcut" id="Shortcut_y0no4"]
+events = [SubResource("InputEventKey_ebdq3")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ygn6r"]
+device = -1
+keycode = 53
+unicode = 53
+
+[sub_resource type="Shortcut" id="Shortcut_6oni0"]
+events = [SubResource("InputEventKey_ygn6r")]
+
+[node name="inventory" type="Node" unique_id=392533934]
+script = ExtResource("1_ll5o3")
+
+[node name="ui" type="CanvasLayer" parent="." unique_id=1712331488]
+
+[node name="hotbar" type="HBoxContainer" parent="ui" unique_id=1037214876]
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.86200005
+anchor_right = 0.28300002
+anchor_bottom = 0.957
+offset_top = 0.35998535
+offset_right = -0.24002075
+offset_bottom = -0.040039063
+grow_vertical = 0
+script = ExtResource("2_3jjra")
+
+[node name="slot" parent="ui/hotbar" unique_id=1715536932 instance=ExtResource("1_5atxo")]
+layout_mode = 2
+shortcut = SubResource("Shortcut_ll5o3")
+
+[node name="slot2" parent="ui/hotbar" unique_id=219809187 instance=ExtResource("1_5atxo")]
+layout_mode = 2
+shortcut = SubResource("Shortcut_en8ad")
+
+[node name="slot3" parent="ui/hotbar" unique_id=1972613670 instance=ExtResource("1_5atxo")]
+layout_mode = 2
+shortcut = SubResource("Shortcut_ygn6r")
+
+[node name="slot4" parent="ui/hotbar" unique_id=129540132 instance=ExtResource("1_5atxo")]
+layout_mode = 2
+shortcut = SubResource("Shortcut_y0no4")
+
+[node name="slot5" parent="ui/hotbar" unique_id=2115562765 instance=ExtResource("1_5atxo")]
+layout_mode = 2
+shortcut = SubResource("Shortcut_6oni0")

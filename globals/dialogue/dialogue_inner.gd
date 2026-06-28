@@ -1,4 +1,4 @@
-# DialogueBox.gd
+
 extends Control
 
 @onready var text_label: RichTextLabel = %text
@@ -7,6 +7,7 @@ extends Control
 
 @export var characters_per_second: float = 30.0
 @export var wait_time_after_typing: float = 2.0
+@export var fade_duration: float = 0.5
 
 var typing_tween: Tween
 var dialogue_queue: Array = []
@@ -22,10 +23,30 @@ func display_text(text_to_display: String, person: String, pitch: float) -> void
 func _play_next_in_queue() -> void:
 	if dialogue_queue.is_empty():
 		is_playing = false
-		canvas_layer.hide()
+		
+		var fade_tween = create_tween().set_parallel(true)
+		var valid_nodes_found: bool = false
+		
+		for child in canvas_layer.get_children():
+			if child is Control or child is Node2D:
+				fade_tween.tween_property(child, "modulate:a", 0.0, 1.0)
+				valid_nodes_found = true
+		
+		if valid_nodes_found:
+			fade_tween.set_parallel(false)
+			fade_tween.tween_callback(canvas_layer.hide)
+		else:
+			fade_tween.kill()
+			canvas_layer.hide()
+			
 		return
 		
 	is_playing = true
+	
+	for child in canvas_layer.get_children():
+		if child is Control or child is Node2D:
+			child.modulate.a = 1.0
+			
 	canvas_layer.show()
 	
 	var current_line = dialogue_queue.pop_front()
@@ -42,15 +63,13 @@ func _play_next_in_queue() -> void:
 	var total_characters = text_to_display.length()
 	var duration = total_characters / characters_per_second
 		
-	var typing_tween = create_tween()
+	typing_tween = create_tween()
 	typing_tween.tween_property(text_label, "visible_characters", total_characters, duration)
-
 
 	var time_per_char = duration / total_characters
 	$dialogue_canvas/dialogue_sound.pitch_scale = pitch
 	for i in range(total_characters):
 		typing_tween.parallel().tween_callback($dialogue_canvas/dialogue_sound.play).set_delay(i * time_per_char)
-
 
 	typing_tween.tween_interval(wait_time_after_typing)
 	typing_tween.tween_callback(_play_next_in_queue)

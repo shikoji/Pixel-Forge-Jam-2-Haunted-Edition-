@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://blt3hdm80janx"]
+
+[ext_resource type="PackedScene" uid="uid://dpu14g2p3jjty" path="res://player/player.tscn" id="1_o0ihb"]
+[ext_resource type="PackedScene" uid="uid://cxtosrsbtwieb" path="res://ui/player_ui.tscn" id="3_2qhjg"]
+[ext_resource type="PackedScene" uid="uid://b3wq75uuw8o03" path="res://mechanics/items/test/test_interactable.tscn" id="4_6eh6t"]
+[ext_resource type="PackedScene" uid="uid://7gjxh8pna2jx" path="res://mechanics/inventory/inventory.tscn" id="4_o0ihb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+size = Vector3(154.72737, 1, 162.85262)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_x0q5t"]
+albedo_color = Color(0.2231029, 0.2231029, 0.22310287, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7dm0k"]
+material = SubResource("ORMMaterial3D_x0q5t")
+size = Vector2(156.52, 164.44)
+
+[node name="main" type="Node3D" unique_id=1303367813]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=867222819]
+environment = SubResource("Environment_h2yge")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1918601353]
+transform = Transform3D(-0.8660254, -0.43301278, 0.24999999, 0.46327963, -0.50684476, 0.7269666, -0.18807462, 0.7453914, 0.6395464, 0, 64.87465, 135.86516)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="player" parent="." unique_id=125507223 instance=ExtResource("1_o0ihb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9367685, 1.7699821, 3.0966024)
+
+[node name="floor" type="StaticBody3D" parent="." unique_id=113786911]
+collision_mask = 2
+
+[node name="collision_shape" type="CollisionShape3D" parent="floor" unique_id=501590970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62513924, 0, -0.34723663)
+shape = SubResource("BoxShape3D_0xm2m")
+debug_color = Color(0.8379153, 0.38512078, 7.70092e-07, 1)
+
+[node name="mesh" type="MeshInstance3D" parent="floor" unique_id=673627936]
+transform = Transform3D(0.9999645, -0.007489427, 0.0038685566, 0.0074920366, 0.9999717, -0.0006603215, -0.003863501, 0.0006892861, 0.9999923, -0.02206707, -0.026079178, 0.036579132)
+mesh = SubResource("PlaneMesh_7dm0k")
+
+[node name="wall" type="CSGBox3D" parent="floor" unique_id=1826586481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6958313, 4.1029663, 0)
+use_collision = true
+size = Vector3(2.9406128, 9.205933, 1)
+
+[node name="player_ui" parent="." unique_id=1170253261 instance=ExtResource("3_2qhjg")]
+
+[node name="inventory" parent="." unique_id=392533934 instance=ExtResource("4_o0ihb")]
+
+[node name="test_interactable" parent="." unique_id=1622728613 instance=ExtResource("4_6eh6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51665735, 0.6387472, -0.04714966)

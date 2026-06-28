@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b3wq75uuw8o03"]
+
+[ext_resource type="Script" uid="uid://bn1gi53ckkuvb" path="res://mechanics/items/test/test_interactable.gd" id="1_xj7df"]
+[ext_resource type="Resource" uid="uid://c15thnacytoea" path="res://mechanics/items/test/test.tres" id="2_455to"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_gsmj0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_455to"]
+radius = 0.4617009
+
+[node name="test_interactable" type="RigidBody3D" unique_id=1788366226]
+collision_layer = 2
+script = ExtResource("1_xj7df")
+data = ExtResource("2_455to")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1936786692]
+mesh = SubResource("SphereMesh_gsmj0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=445338569]
+shape = SubResource("SphereShape3D_455to")

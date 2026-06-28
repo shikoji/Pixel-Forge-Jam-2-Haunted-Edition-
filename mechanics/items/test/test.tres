@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="item_data" format=3 uid="uid://c15thnacytoea"]
+
+[ext_resource type="Texture2D" uid="uid://dvxpyl5lbjvnq" path="res://icon.svg" id="1_kviyk"]
+[ext_resource type="Script" uid="uid://djn7kbe8v8i7w" path="res://mechanics/items/item_data.gd" id="2_lgxnk"]
+
+[resource]
+script = ExtResource("2_lgxnk")
+item_name = "TEST"
+mesh_scene_path = "uid://b3wq75uuw8o03"
+metadata/_custom_type_script = "uid://djn7kbe8v8i7w"
