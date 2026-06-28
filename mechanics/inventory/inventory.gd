@@ -13,14 +13,14 @@ func _init() -> void:
 	for i in hotbar_size:
 		hotbar.append( null )
 		
-func add_item(item:item_data) -> bool:
+func add_item(item: item_data) -> int:
 	for i in hotbar_size:
 		if hotbar[i] == null:
 			hotbar[i] = item
 			inventory_changed.emit()
 			slot_selected.emit(i)
-			return true
-	return false
+			return i
+	return -1 
 	
 func select_slot(index:int):
 	print(index)

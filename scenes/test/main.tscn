@@ -40,6 +40,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9367685, 1.7699821, 3.09660
 [node name="floor" type="StaticBody3D" parent="." unique_id=113786911]
 collision_mask = 2
 
+[node name="test_interactable" parent="floor" unique_id=1622728613 instance=ExtResource("4_6eh6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51665735, 0.47354782, -0.04714966)
+mass = 0.001
+
 [node name="collision_shape" type="CollisionShape3D" parent="floor" unique_id=501590970]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62513924, 0, -0.34723663)
 shape = SubResource("BoxShape3D_0xm2m")
@@ -57,6 +61,3 @@ size = Vector3(2.9406128, 9.205933, 1)
 [node name="player_ui" parent="." unique_id=1170253261 instance=ExtResource("3_2qhjg")]
 
 [node name="inventory" parent="." unique_id=392533934 instance=ExtResource("4_o0ihb")]
-
-[node name="test_interactable" parent="." unique_id=1622728613 instance=ExtResource("4_6eh6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51665735, 0.6387472, -0.04714966)

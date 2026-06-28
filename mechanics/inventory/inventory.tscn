@@ -50,6 +50,7 @@ script = ExtResource("1_ll5o3")
 [node name="ui" type="CanvasLayer" parent="." unique_id=1712331488]
 
 [node name="hotbar" type="HBoxContainer" parent="ui" unique_id=1037214876]
+unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.025
 anchor_top = 0.86200005

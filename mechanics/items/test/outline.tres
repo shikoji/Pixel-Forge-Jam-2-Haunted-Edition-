@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://delvdq31hgchq"]
+
+[ext_resource type="Shader" uid="uid://bs5djn5bfkbni" path="res://mechanics/items/test/outline_shader.gdshader" id="1_vbmn1"]
+
+[resource]
+render_priority = 2
+shader = ExtResource("1_vbmn1")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 3.0

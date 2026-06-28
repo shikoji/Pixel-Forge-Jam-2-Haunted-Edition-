@@ -7,6 +7,7 @@ var MOUSE_SENSITIVITY = global_manager.mouse_sense
 const ACCELERATION = 8.0
 const DECELERATION = 10.0
 
+@export var outline_material: Material
 
 const bob_feq = global_manager.player_bob_feq
 const bob_amp = global_manager.player_bob_amp
@@ -16,6 +17,7 @@ const BOB_CENTER_SPEED = 5.0
 const LEAN_ANGLE = 1.0
 const LEAN_SPEED = 4.0 
 
+var current_target: Node = null
 
 var footstep_can_play := true
 var footstep_landed := true
@@ -49,19 +51,50 @@ func target_tween(modulate:float):
 	var tween: Tween = create_tween()
 	tween.tween_property($head/camera/interact_sprite, "modulate:a", modulate, 0.3)
 
+func _clear_outline(obj: Node) -> void:
+	if is_instance_valid(obj):
+		for child in obj.get_children():
+			if child is MeshInstance3D:
+				child.material_overlay = null
+
 func _physics_process(delta: float) -> void:
 	if $head/camera/interact_ray.is_colliding():
 		var target = $head/camera/interact_ray.get_collider()
 		
 		if target and target.has_method("interact"):
+			_clear_outline(current_target)
+			current_target = target
+			
+			for child in target.get_children():
+				if child is MeshInstance3D:
+					child.material_overlay = outline_material
 			$head/camera/interact_sprite.global_position = target.global_position + Vector3(0, 1, 0)
 			$head/camera/interact_sprite.show()
 			$head/camera/interact_sprite.modulate.a = 0
 			target_tween(1)
 			
 			if Input.is_action_just_pressed("interact"):
-				target.interact()
+				var target_index: int = inventory.add_item(target.data)
+				
+				if target_index != -1:
+					var hotbar_ui = get_tree().current_scene.find_child("hotbar", true, false)
+					
+					if hotbar_ui and hotbar_ui.has_method("get_slot_screen_position"):
+						var slot_2d_pos = hotbar_ui.get_slot_screen_position(target_index)
+						target.interact(self, $head/camera, slot_2d_pos)
+					else:
+						var screen_center = get_viewport().size / 2
+						target.interact(self, $head/camera, screen_center)
+						print("Warning: 'hotbar' node not found, item flying to screen center.")
+				else:
+					print("Inventory is full")
+		else:
+			_clear_outline(current_target)
+			current_target = null
+			target_tween(0)
 	else:
+		_clear_outline(current_target)
+		current_target = null
 		target_tween(0)
 				
 	head.rotation.y = lerp_angle(head.rotation.y, target_rotation_y, CAMERA_SMOOTHING * delta)
@@ -163,9 +196,14 @@ func drop_from_player(item):
 	item.global_position = drop_pos
 	
 
-	if item is RigidBody3D:
+	if item is RigidBody3D or StaticBody2D:
 		item.linear_velocity = Vector3.ZERO
 		item.angular_velocity = Vector3.ZERO
 		
+		var tween = create_tween()
+
+		
 		var toss = (forward * 4.0) + (Vector3.UP * 1.5)
 		item.apply_central_impulse(toss)
+		item.scale = Vector3.ZERO
+		tween.tween_property(item, "scale", Vector3(1,1,1), 0.15).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)

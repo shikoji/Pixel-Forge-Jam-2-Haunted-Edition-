@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ddqj6tluveepa" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="AudioStream" uid="uid://cwi6a03q2dakn" path="res://player/sounds/walking1.mp3" id="2_g1dw6"]
+[ext_resource type="Material" uid="uid://delvdq31hgchq" path="res://mechanics/items/test/outline.tres" id="2_g6k8r"]
 [ext_resource type="AudioStream" uid="uid://dqr2ox8lhos0c" path="res://player/sounds/landing.mp3" id="3_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://cj4kbxqh4nejm" path="res://player/interact.png" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://b5dr0cweshwhf" path="res://player/view_model.gd" id="5_qjkh3"]
@@ -22,6 +23,7 @@ stream_0/stream = ExtResource("3_g1dw6")
 [node name="player" type="CharacterBody3D" unique_id=125507223]
 collision_layer = 2
 script = ExtResource("1_oul6g")
+outline_material = ExtResource("2_g6k8r")
 
 [node name="mesh" type="MeshInstance3D" parent="." unique_id=82901389]
 cast_shadow = 0

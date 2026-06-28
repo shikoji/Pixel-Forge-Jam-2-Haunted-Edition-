@@ -12,7 +12,14 @@ func get_slots():
 	slots = get_children()
 	for slot : TextureButton in slots:
 		slot.pressed.connect(inventory.select_slot.bind(slot.get_index()))
-		
+
+func get_slot_screen_position(index: int) -> Vector2:
+	if index >= 0 and index < slots.size():
+		var slot_node = slots[index] as TextureButton
+		if slot_node:
+			return slot_node.global_position + (slot_node.size / 2)
+	return Vector2.ZERO
+	
 func _update_hotbar():
 	for node in slots:
 		var slot = node as TextureButton
