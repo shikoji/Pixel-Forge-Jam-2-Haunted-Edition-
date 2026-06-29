@@ -1,0 +1,295 @@
+[gd_scene format=3 uid="uid://cadyg7p3gavsx"]
+
+[ext_resource type="Script" uid="uid://be0dfxqy2o6ni" path="res://scenes/menu/title_screen.gd" id="1_title"]
+[ext_resource type="FontFile" uid="uid://b7f2ugwfvls87" path="res://globals/fonts/dialogue.ttf" id="2_font"]
+
+[sub_resource type="Environment" id="Environment_title"]
+background_mode = 1
+background_color = Color(0.004, 0.003, 0.004, 1)
+ambient_light_color = Color(0.1, 0.065, 0.055, 1)
+ambient_light_energy = 0.12
+fog_enabled = true
+fog_light_color = Color(0.11, 0.055, 0.045, 1)
+fog_density = 0.045
+fog_sky_affect = 0.0
+
+[sub_resource type="StandardMaterial3D" id="Mat_title_stone"]
+albedo_color = Color(0.065, 0.07, 0.075, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_title_shadow"]
+albedo_color = Color(0.004, 0.006, 0.008, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_title_iron"]
+albedo_color = Color(0.02, 0.025, 0.03, 1)
+roughness = 0.72
+
+[sub_resource type="StandardMaterial3D" id="Mat_title_red"]
+albedo_color = Color(0.38, 0.012, 0.018, 1)
+emission_enabled = true
+emission = Color(0.9, 0.01, 0.01, 1)
+emission_energy_multiplier = 1.25
+
+[sub_resource type="StandardMaterial3D" id="Mat_title_wax"]
+albedo_color = Color(0.75, 0.62, 0.45, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="Mat_title_flame"]
+albedo_color = Color(1, 0.42, 0.12, 1)
+emission_enabled = true
+emission = Color(1, 0.28, 0.08, 1)
+emission_energy_multiplier = 1.9
+
+[sub_resource type="StyleBoxFlat" id="Style_button_normal"]
+bg_color = Color(0.02, 0.018, 0.018, 0.84)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.55, 0.04, 0.035, 0.95)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="Style_button_hover"]
+bg_color = Color(0.12, 0.03, 0.025, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.95, 0.16, 0.1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="title_screen" type="Node3D" unique_id=372149974]
+script = ExtResource("1_title")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=189760817]
+environment = SubResource("Environment_title")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1282281229]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.087156, 0, -0.087156, 0.996195, 0, 1.7, 3.4)
+current = true
+fov = 58.0
+
+[node name="MountedTitleBackground" type="Node3D" parent="." unique_id=780417794]
+
+[node name="floor" type="CSGBox3D" parent="MountedTitleBackground" unique_id=2127347119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08, -4)
+size = Vector3(8, 0.16, 18)
+material = SubResource("Mat_title_stone")
+
+[node name="ceiling" type="CSGBox3D" parent="MountedTitleBackground" unique_id=196209063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6, -4)
+size = Vector3(8, 0.18, 18)
+material = SubResource("Mat_title_shadow")
+
+[node name="left_wall" type="CSGBox3D" parent="MountedTitleBackground" unique_id=1587212287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.75, -4)
+size = Vector3(0.35, 3.5, 18)
+material = SubResource("Mat_title_stone")
+
+[node name="right_wall" type="CSGBox3D" parent="MountedTitleBackground" unique_id=1766765350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.75, -4)
+size = Vector3(0.35, 3.5, 18)
+material = SubResource("Mat_title_stone")
+
+[node name="back_wall" type="CSGBox3D" parent="MountedTitleBackground" unique_id=577495529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -12.7)
+size = Vector3(8, 3.5, 0.35)
+material = SubResource("Mat_title_stone")
+
+[node name="gate_bar_left" type="CSGBox3D" parent="MountedTitleBackground" unique_id=1714118485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7, 1.55, -8.8)
+size = Vector3(0.09, 3.1, 0.09)
+material = SubResource("Mat_title_iron")
+
+[node name="gate_bar_mid_left" type="CSGBox3D" parent="MountedTitleBackground" unique_id=996880687]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, 1.55, -8.8)
+size = Vector3(0.09, 3.1, 0.09)
+material = SubResource("Mat_title_iron")
+
+[node name="gate_bar_center" type="CSGBox3D" parent="MountedTitleBackground" unique_id=1792526264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, -8.8)
+size = Vector3(0.09, 3.1, 0.09)
+material = SubResource("Mat_title_iron")
+
+[node name="gate_bar_mid_right" type="CSGBox3D" parent="MountedTitleBackground" unique_id=1347980285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85, 1.55, -8.8)
+size = Vector3(0.09, 3.1, 0.09)
+material = SubResource("Mat_title_iron")
+
+[node name="gate_bar_right" type="CSGBox3D" parent="MountedTitleBackground" unique_id=375206492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, 1.55, -8.8)
+size = Vector3(0.09, 3.1, 0.09)
+material = SubResource("Mat_title_iron")
+
+[node name="gate_top_rail" type="CSGBox3D" parent="MountedTitleBackground" unique_id=1504331221]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, -8.8)
+size = Vector3(3.8, 0.1, 0.1)
+material = SubResource("Mat_title_iron")
+
+[node name="gate_mid_rail" type="CSGBox3D" parent="MountedTitleBackground" unique_id=1622347942]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, -8.8)
+size = Vector3(3.8, 0.1, 0.1)
+material = SubResource("Mat_title_iron")
+
+[node name="dust_silhouette" type="Node3D" parent="MountedTitleBackground" unique_id=464822857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.2)
+
+[node name="dust_body" type="CSGCylinder3D" parent="MountedTitleBackground/dust_silhouette" unique_id=66001886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+height = 2.7
+sides = 14
+material = SubResource("Mat_title_shadow")
+
+[node name="dust_red_vein_left" type="CSGBox3D" parent="MountedTitleBackground/dust_silhouette" unique_id=239432143]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16, 1.52, -0.5)
+size = Vector3(0.035, 1.25, 0.035)
+material = SubResource("Mat_title_red")
+
+[node name="dust_red_vein_right" type="CSGBox3D" parent="MountedTitleBackground/dust_silhouette" unique_id=487180932]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16, 1.52, -0.5)
+size = Vector3(0.035, 1.25, 0.035)
+material = SubResource("Mat_title_red")
+
+[node name="dust_red_light" type="OmniLight3D" parent="MountedTitleBackground/dust_silhouette" unique_id=907129582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.35)
+light_color = Color(0.85, 0.02, 0.02, 1)
+light_energy = 0.9
+omni_range = 3.3
+
+[node name="lizard_eye_left" type="CSGSphere3D" parent="MountedTitleBackground" unique_id=1634970208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34, 2.05, -11.85)
+radius = 0.1
+material = SubResource("Mat_title_red")
+
+[node name="lizard_eye_right" type="CSGSphere3D" parent="MountedTitleBackground" unique_id=1513622549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, 2.05, -11.85)
+radius = 0.1
+material = SubResource("Mat_title_red")
+
+[node name="candle_left" type="Node3D" parent="MountedTitleBackground" unique_id=1303362924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85, 0, -2.7)
+
+[node name="wax" type="CSGCylinder3D" parent="MountedTitleBackground/candle_left" unique_id=298718307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24, 0)
+radius = 0.13
+height = 0.48
+sides = 10
+material = SubResource("Mat_title_wax")
+
+[node name="flame" type="CSGSphere3D" parent="MountedTitleBackground/candle_left" unique_id=2131752990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58, 0)
+radius = 0.08
+material = SubResource("Mat_title_flame")
+
+[node name="light" type="OmniLight3D" parent="MountedTitleBackground/candle_left" unique_id=1929625234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76, 0)
+light_color = Color(1, 0.42, 0.16, 1)
+light_energy = 1.45
+shadow_enabled = true
+omni_range = 4.6
+
+[node name="candle_right" type="Node3D" parent="MountedTitleBackground" unique_id=1372009166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85, 0, -5.8)
+
+[node name="wax" type="CSGCylinder3D" parent="MountedTitleBackground/candle_right" unique_id=151519574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24, 0)
+radius = 0.13
+height = 0.48
+sides = 10
+material = SubResource("Mat_title_wax")
+
+[node name="flame" type="CSGSphere3D" parent="MountedTitleBackground/candle_right" unique_id=1636187777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58, 0)
+radius = 0.08
+material = SubResource("Mat_title_flame")
+
+[node name="light" type="OmniLight3D" parent="MountedTitleBackground/candle_right" unique_id=853568146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76, 0)
+light_color = Color(1, 0.42, 0.16, 1)
+light_energy = 1.45
+shadow_enabled = true
+omni_range = 4.6
+
+[node name="light2" type="OmniLight3D" parent="MountedTitleBackground/candle_right" unique_id=227438134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4804053, 1.007037, -6.037881)
+light_color = Color(1, 0.42, 0.16, 1)
+light_energy = 1.45
+shadow_enabled = true
+omni_range = 4.6
+
+[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=1810236171]
+
+[node name="Root" type="Control" parent="MenuLayer" unique_id=1209373792]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shade" type="ColorRect" parent="MenuLayer/Root" unique_id=1586379324]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.48)
+
+[node name="Menu" type="VBoxContainer" parent="MenuLayer/Root" unique_id=737410173]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.065
+anchor_top = 0.17
+anchor_right = 0.47
+anchor_bottom = 0.82
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="MenuLayer/Root/Menu" unique_id=1598786548]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.76, 0.66, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 70
+text = "THE HUNGRY PRISON"
+autowrap_mode = 3
+
+[node name="Subtitle" type="Label" parent="MenuLayer/Root/Menu" unique_id=1360625141]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.74, 0.58, 0.5, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 27
+text = "Bring Dust the souls, or rot where the old god feeds."
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="MenuLayer/Root/Menu" unique_id=1546796915]
+custom_minimum_size = Vector2(1, 22)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MenuLayer/Root/Menu" unique_id=791783697]
+custom_minimum_size = Vector2(290, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.86, 0.78, 0.68, 1)
+theme_override_colors/font_hover_color = Color(1, 0.88, 0.76, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("Style_button_normal")
+theme_override_styles/hover = SubResource("Style_button_hover")
+theme_override_styles/focus = SubResource("Style_button_hover")
+text = "START"
+
+[node name="QuitButton" type="Button" parent="MenuLayer/Root/Menu" unique_id=640752317]
+custom_minimum_size = Vector2(290, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.86, 0.78, 0.68, 1)
+theme_override_colors/font_hover_color = Color(1, 0.88, 0.76, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("Style_button_normal")
+theme_override_styles/hover = SubResource("Style_button_hover")
+theme_override_styles/focus = SubResource("Style_button_hover")
+text = "QUIT"
